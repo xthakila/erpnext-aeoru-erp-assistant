@@ -60,5 +60,6 @@
    "type": "DocType"
   }
  ],
- "title": "Aeoru AI"
+ "title": "Aeoru AI",
+ "type": "Workspace"
 }
