@@ -1,5 +1,4 @@
 import frappe
-import json
 import shutil
 
 
@@ -8,7 +7,7 @@ def after_install():
 
     Auto-enables Claude Code if the CLI binary is found,
     otherwise falls back to Claude API (disabled until key is set).
-    Also injects Aeoru AI into the Desktop home page.
+    Also adds Aeoru AI to the Desktop icon grid.
     """
     settings = frappe.get_single("AI Assistant Settings")
 
@@ -36,44 +35,38 @@ def after_install():
     else:
         frappe.logger().info("AI Assistant: Claude Code CLI not found, disabled until API key is configured")
 
-    # Add Aeoru AI to the Desktop home page
-    _add_to_desktop()
+    # Add Aeoru AI icon to the Desktop grid
+    _add_desktop_icon()
 
 
-def _add_to_desktop():
-    """Inject Aeoru AI shortcut into the Home workspace Desktop grid."""
+def _add_desktop_icon():
+    """Create a Desktop Icon so Aeoru AI appears on the v16 Desktop grid."""
     try:
-        home = frappe.get_doc("Workspace", "Home")
-        content = json.loads(home.content or "[]")
+        # Create Workspace Sidebar record (required by Desktop Icon link validation)
+        if not frappe.db.exists("Workspace Sidebar", "Aeoru AI"):
+            frappe.get_doc({
+                "doctype": "Workspace Sidebar",
+                "name": "Aeoru AI",
+                "title": "Aeoru AI",
+            }).insert(ignore_permissions=True, ignore_if_duplicate=True)
 
-        # Check if already added
-        for item in content:
-            if item.get("data", {}).get("shortcut_name") == "AI Assistant":
-                return  # Already exists
+        # Create the Desktop Icon
+        if not frappe.db.exists("Desktop Icon", {"label": "Aeoru AI"}):
+            frappe.get_doc({
+                "doctype": "Desktop Icon",
+                "label": "Aeoru AI",
+                "link_type": "Workspace Sidebar",
+                "link_to": "Aeoru AI",
+                "app": "aeoru_ai",
+                "icon": "chat",
+                "icon_type": "Link",
+                "standard": 1,
+                "hidden": 0,
+                "idx": 45,
+            }).insert(ignore_permissions=True)
 
-        # Add shortcut entry to the content grid
-        content.append({
-            "id": "aeoru_ai_shortcut",
-            "type": "shortcut",
-            "data": {
-                "shortcut_name": "AI Assistant",
-                "col": 3,
-            },
-        })
-
-        # Add the shortcut definition
-        existing_shortcuts = [s.label for s in (home.shortcuts or [])]
-        if "AI Assistant" not in existing_shortcuts:
-            home.append("shortcuts", {
-                "label": "AI Assistant",
-                "link_to": "AI Assistant Settings",
-                "type": "DocType",
-                "color": "Purple",
-            })
-
-        home.content = json.dumps(content)
-        home.save(ignore_permissions=True)
         frappe.db.commit()
-        frappe.logger().info("AI Assistant: Added to Desktop home page")
+        frappe.clear_cache()
+        frappe.logger().info("AI Assistant: Desktop icon created")
     except Exception as e:
-        frappe.logger().warning(f"AI Assistant: Could not add to Desktop: {e}")
+        frappe.logger().warning(f"AI Assistant: Could not create Desktop icon: {e}")
