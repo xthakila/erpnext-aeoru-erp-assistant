@@ -1,0 +1,146 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "autoname": "",
+ "creation": "2024-01-01 00:00:00.000000",
+ "doctype": "DocType",
+ "document_type": "",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "enabled",
+  "default_provider",
+  "claude_section",
+  "claude_api_key",
+  "claude_model",
+  "deepseek_section",
+  "deepseek_api_key",
+  "deepseek_base_url",
+  "glm_section",
+  "glm_api_key",
+  "glm_base_url",
+  "general_section",
+  "temperature",
+  "max_tokens",
+  "system_prompt",
+  "require_confirmation"
+ ],
+ "fields": [
+  {
+   "default": "0",
+   "fieldname": "enabled",
+   "fieldtype": "Check",
+   "label": "Enable AI Assistant"
+  },
+  {
+   "fieldname": "default_provider",
+   "fieldtype": "Select",
+   "label": "Default Provider",
+   "options": "Claude\nDeepSeek\nGLM-5"
+  },
+  {
+   "fieldname": "claude_section",
+   "fieldtype": "Section Break",
+   "label": "Claude Configuration"
+  },
+  {
+   "fieldname": "claude_api_key",
+   "fieldtype": "Password",
+   "label": "Claude API Key"
+  },
+  {
+   "default": "claude-sonnet-4-20250514",
+   "fieldname": "claude_model",
+   "fieldtype": "Data",
+   "label": "Claude Model"
+  },
+  {
+   "fieldname": "deepseek_section",
+   "fieldtype": "Section Break",
+   "label": "DeepSeek Configuration"
+  },
+  {
+   "fieldname": "deepseek_api_key",
+   "fieldtype": "Password",
+   "label": "DeepSeek API Key"
+  },
+  {
+   "default": "https://api.deepseek.com/v1",
+   "fieldname": "deepseek_base_url",
+   "fieldtype": "Data",
+   "label": "DeepSeek Base URL"
+  },
+  {
+   "fieldname": "glm_section",
+   "fieldtype": "Section Break",
+   "label": "GLM-5 Configuration"
+  },
+  {
+   "fieldname": "glm_api_key",
+   "fieldtype": "Password",
+   "label": "GLM-5 API Key (id.secret format)"
+  },
+  {
+   "default": "https://open.bigmodel.cn/api/paas/v4",
+   "fieldname": "glm_base_url",
+   "fieldtype": "Data",
+   "label": "GLM-5 Base URL"
+  },
+  {
+   "fieldname": "general_section",
+   "fieldtype": "Section Break",
+   "label": "General Settings"
+  },
+  {
+   "default": "0.3",
+   "fieldname": "temperature",
+   "fieldtype": "Float",
+   "label": "Temperature"
+  },
+  {
+   "default": "4096",
+   "fieldname": "max_tokens",
+   "fieldtype": "Int",
+   "label": "Max Response Tokens"
+  },
+  {
+   "fieldname": "system_prompt",
+   "fieldtype": "Small Text",
+   "label": "Custom System Prompt Override"
+  },
+  {
+   "default": "1",
+   "fieldname": "require_confirmation",
+   "fieldtype": "Check",
+   "label": "Require Confirmation for Destructive Actions"
+  }
+ ],
+ "idx": 0,
+ "issingle": 1,
+ "links": [],
+ "modified": "2024-01-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Aeoru AI",
+ "name": "AI Assistant Settings",
+ "naming_rule": "Random",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 0,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 0
+}
