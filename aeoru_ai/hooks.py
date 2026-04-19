@@ -11,10 +11,12 @@ app_include_js = [
     "/assets/aeoru_ai/js/ai_assistant.js",
     "/assets/aeoru_ai/js/ai_assistant_panel.js",
     "/assets/aeoru_ai/js/ai_assistant_message.js",
+    "/assets/aeoru_ai/js/claude_terminal.js",
 ]
 
 app_include_css = [
     "/assets/aeoru_ai/css/ai_assistant.css",
+    "/assets/aeoru_ai/css/claude_terminal.css",
 ]
 
 # Installation

@@ -189,6 +189,7 @@ class AIAssistantPanel {
                     <select class="provider-select">
                         <option value="">Default</option>
                         <option value="Claude">Claude</option>
+                        <option value="Claude Code">Claude Code</option>
                         <option value="DeepSeek">DeepSeek</option>
                         <option value="GLM-5">GLM-5</option>
                     </select>

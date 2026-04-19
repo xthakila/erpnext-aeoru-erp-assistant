@@ -84,6 +84,28 @@ def send_message(message: str, conversation_id: str = None, provider: str = None
             confirmed_data = json.loads(confirmed_action) if isinstance(confirmed_action, str) else confirmed_action
             confirmed = True
 
+        # Single-shot branch for providers that don't support tool calls (e.g. Claude Code CLI)
+        if not ai_provider.supports_tool_calls:
+            # Inject CLI session_id for --resume
+            if getattr(conversation, 'claude_code_session_id', None):
+                ai_provider.session_id = conversation.claude_code_session_id
+
+            response = ai_provider.chat(messages=history, system_prompt=system_prompt)
+
+            # Persist CLI session_id for next message
+            cli_sid = response.usage.get("cli_session_id")
+            if cli_sid and hasattr(conversation, 'claude_code_session_id'):
+                conversation.claude_code_session_id = cli_sid
+
+            _save_message(conversation, "assistant", response.text)
+            conversation.save(ignore_permissions=True)
+            frappe.db.commit()
+            return {
+                "response": response.text,
+                "conversation_id": conversation.name,
+                "usage": response.usage,
+            }
+
         # Agentic loop
         for round_num in range(MAX_ROUNDS):
             response = ai_provider.chat(

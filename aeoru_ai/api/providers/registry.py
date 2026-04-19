@@ -2,6 +2,7 @@ import frappe
 from .base import BaseProvider
 from .claude_provider import ClaudeProvider
 from .openai_compat_provider import OpenAICompatProvider
+from .claude_code_provider import ClaudeCodeProvider
 
 
 def get_provider(provider_name: str = None) -> BaseProvider:
@@ -62,6 +63,25 @@ def get_provider(provider_name: str = None) -> BaseProvider:
             temperature=temperature,
             max_tokens=max_tokens,
             use_jwt=True,
+        )
+
+    elif provider == "Claude Code":
+        # Locate the MCP runner script for ERPNext tools
+        import os
+        mcp_path = os.path.join(
+            os.path.dirname(os.path.abspath(__file__)), "..", "mcp_runner.sh"
+        )
+        if not os.path.exists(mcp_path):
+            mcp_path = ""
+
+        return ClaudeCodeProvider(
+            model=settings.claude_code_model or "sonnet",
+            cli_path=settings.claude_code_cli_path or "/usr/local/bin/claude",
+            max_budget_usd=float(settings.claude_code_max_budget or 1.00),
+            timeout=int(settings.claude_code_timeout or 120),
+            max_concurrent=int(settings.claude_code_max_concurrent or 3),
+            allowed_tools=settings.claude_code_allowed_tools or "",
+            mcp_server_path=mcp_path,
         )
 
     else:

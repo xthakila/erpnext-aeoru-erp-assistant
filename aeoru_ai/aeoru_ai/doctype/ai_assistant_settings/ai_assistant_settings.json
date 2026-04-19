@@ -13,6 +13,14 @@
   "claude_section",
   "claude_api_key",
   "claude_model",
+  "claude_code_section",
+  "claude_code_cli_path",
+  "claude_code_model",
+  "claude_code_max_budget",
+  "claude_code_column_break",
+  "claude_code_timeout",
+  "claude_code_max_concurrent",
+  "claude_code_allowed_tools",
   "deepseek_section",
   "deepseek_api_key",
   "deepseek_base_url",
@@ -36,7 +44,7 @@
    "fieldname": "default_provider",
    "fieldtype": "Select",
    "label": "Default Provider",
-   "options": "Claude\nDeepSeek\nGLM-5"
+   "options": "Claude\nClaude Code\nDeepSeek\nGLM-5"
   },
   {
    "fieldname": "claude_section",
@@ -53,6 +61,52 @@
    "fieldname": "claude_model",
    "fieldtype": "Data",
    "label": "Claude Model"
+  },
+  {
+   "fieldname": "claude_code_section",
+   "fieldtype": "Section Break",
+   "label": "Claude Code Configuration",
+   "description": "Uses the locally installed Claude Code CLI — no API key needed."
+  },
+  {
+   "default": "/usr/local/bin/claude",
+   "fieldname": "claude_code_cli_path",
+   "fieldtype": "Data",
+   "label": "CLI Binary Path"
+  },
+  {
+   "default": "sonnet",
+   "fieldname": "claude_code_model",
+   "fieldtype": "Select",
+   "label": "Model",
+   "options": "opus\nsonnet\nhaiku"
+  },
+  {
+   "default": "1.00",
+   "fieldname": "claude_code_max_budget",
+   "fieldtype": "Float",
+   "label": "Max Budget per Request (USD)"
+  },
+  {
+   "fieldname": "claude_code_column_break",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "120",
+   "fieldname": "claude_code_timeout",
+   "fieldtype": "Int",
+   "label": "Timeout (seconds)"
+  },
+  {
+   "default": "3",
+   "fieldname": "claude_code_max_concurrent",
+   "fieldtype": "Int",
+   "label": "Max Concurrent Requests"
+  },
+  {
+   "fieldname": "claude_code_allowed_tools",
+   "fieldtype": "Small Text",
+   "label": "Allowed Tools (one per line, empty = all)"
   },
   {
    "fieldname": "deepseek_section",

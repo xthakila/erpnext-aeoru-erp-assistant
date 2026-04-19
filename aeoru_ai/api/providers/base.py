@@ -36,11 +36,17 @@ class AIResponse:
 class BaseProvider(ABC):
     """Abstract base class for AI providers."""
 
-    def __init__(self, api_key: str, model: str, temperature: float = 0.3, max_tokens: int = 4096):
+    def __init__(self, api_key: str = None, model: str = "", temperature: float = 0.3, max_tokens: int = 4096):
         self.api_key = api_key
         self.model = model
         self.temperature = temperature
         self.max_tokens = max_tokens
+
+    @property
+    def supports_tool_calls(self) -> bool:
+        """Whether this provider supports tool calls in the agentic loop.
+        Providers that return False handle everything internally (e.g. CLI-based)."""
+        return True
 
     @abstractmethod
     def chat(self, messages: list, tools: list = None, system_prompt: str = "") -> AIResponse:

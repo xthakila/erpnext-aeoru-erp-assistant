@@ -1,0 +1,51 @@
+/* Claude Code Terminal Styles */
+
+.cc-terminal {
+    display: flex;
+    flex-direction: column;
+    height: 550px;
+    background: #1a1b26;
+    border-radius: 0 0 8px 8px;
+}
+
+.cc-terminal-toolbar {
+    display: flex;
+    gap: 6px;
+    padding: 8px 12px;
+    background: #24283b;
+    border-bottom: 1px solid #3b4261;
+    flex-shrink: 0;
+    align-items: center;
+}
+
+.cc-terminal-toolbar .btn {
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 4px;
+}
+
+.cc-status-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #6b7280;
+    vertical-align: middle;
+}
+
+.cc-terminal-help {
+    padding: 6px 12px;
+    background: #24283b;
+    color: #7982a9;
+    font-size: 12px;
+    font-family: monospace;
+    border-bottom: 1px solid #3b4261;
+    flex-shrink: 0;
+}
+
+.cc-ttyd-frame {
+    flex: 1;
+    border: none;
+    width: 100%;
+    background: #1a1b26;
+}

@@ -12,6 +12,7 @@
   "title",
   "provider",
   "is_active",
+  "claude_code_session_id",
   "messages"
  ],
  "fields": [
@@ -39,6 +40,12 @@
    "fieldname": "is_active",
    "fieldtype": "Check",
    "label": "Active"
+  },
+  {
+   "fieldname": "claude_code_session_id",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Claude Code Session ID"
   },
   {
    "fieldname": "messages",
