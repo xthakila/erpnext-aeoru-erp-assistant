@@ -1,0 +1,64 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"ai_shortcuts\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"AI Assistant Settings\",\"col\":4}},{\"id\":\"ai_conversations\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"AI Conversations\",\"col\":4}},{\"id\":\"ai_terminal\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Claude Code Terminal\",\"col\":4}}]",
+ "creation": "2024-01-01 00:00:00.000000",
+ "custom_blocks": [],
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "chat",
+ "idx": 0,
+ "is_default": 0,
+ "is_hidden": 0,
+ "label": "Aeoru AI",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "AI Assistant Settings",
+   "link_count": 0,
+   "link_to": "AI Assistant Settings",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "AI Conversations",
+   "link_count": 0,
+   "link_to": "AI Conversation",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2024-01-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Aeoru AI",
+ "name": "Aeoru AI",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "restrict_to_domain": "",
+ "roles": [],
+ "sequence_id": 30,
+ "shortcuts": [
+  {
+   "color": "Blue",
+   "doc_view": "",
+   "label": "AI Assistant Settings",
+   "link_to": "AI Assistant Settings",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "doc_view": "List",
+   "label": "AI Conversations",
+   "link_to": "AI Conversation",
+   "type": "DocType"
+  }
+ ],
+ "title": "Aeoru AI"
+}
